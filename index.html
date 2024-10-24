@@ -27,7 +27,7 @@ window.onload = function() {
     if (key) {
         let redirectUrl;
 
-        // Добавляем ключ целиком
+        // Прямое добавление ключа целиком
         if (key.startsWith('vless://')) {
             redirectUrl = 'streisand://import/' + key; // Префикс streisand
         } else if (key.startsWith('v2box://')) {
