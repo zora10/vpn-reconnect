@@ -27,16 +27,17 @@ window.onload = function() {
     if (key) {
         let redirectUrl;
 
+        // Прямое добавление ключа без изменений
         if (key.startsWith('vless://')) {
-            redirectUrl = 'streisand://import/' + encodeURIComponent(key);
+            redirectUrl = 'streisand://import/' + key;
         } else if (key.startsWith('v2box://')) {
-            redirectUrl = 'v2box://install-sub?url=' + encodeURIComponent(key);
+            redirectUrl = 'v2box://install-sub?url=' + key;
         } else if (key.startsWith('v2rayng://')) {
-            redirectUrl = 'v2rayng://install-config?url=' + encodeURIComponent(key);
+            redirectUrl = 'v2rayng://install-config?url=' + key;
         } else if (key.startsWith('macos://')) {
-            redirectUrl = 'vless://' + encodeURIComponent(key.substring(8)); // Убираем 'macos://' и добавляем 'vless://'
+            redirectUrl = 'vless://' + key.substring(8); // Убираем 'macos://'
         } else if (key.startsWith('android://')) {
-            redirectUrl = 'vless://' + encodeURIComponent(key.substring(10)); // Убираем 'android://' и добавляем 'vless://'
+            redirectUrl = 'vless://' + key.substring(10); // Убираем 'android://'
         } else if (key.startsWith('streisand://')) {
             redirectUrl = key; // Оставляем без изменений
         } else {
