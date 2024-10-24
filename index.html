@@ -28,20 +28,24 @@ window.onload = function() {
         let redirectUrl;
 
         if (key.startsWith('vless://')) {
-            redirectUrl = key.replace('vless://', 'streisand://import/');
+            redirectUrl = 'streisand://import/' + key;
         } else if (key.startsWith('v2box://')) {
-            redirectUrl = key.replace('v2box://', 'v2box://install-sub?url=');
+            redirectUrl = 'v2box://install-sub?url=' + key;
         } else if (key.startsWith('v2rayng://')) {
-            redirectUrl = key.replace('v2rayng://', 'v2rayng://install-config?url=');
+            redirectUrl = 'v2rayng://install-config?url=' + key;
         } else if (key.startsWith('macos://')) {
-            redirectUrl = key.replace('macos://', 'vless://');
+            redirectUrl = 'vless://' + key.substring(8); // Убираем 'macos://' и добавляем 'vless://'
         } else if (key.startsWith('android://')) {
-            redirectUrl = key.replace('android://', 'vless://');
+            redirectUrl = 'vless://' + key.substring(10); // Убираем 'android://' и добавляем 'vless://'
         } else if (key.startsWith('streisand://')) {
             redirectUrl = key; // Оставляем без изменений
         } else {
             redirectUrl = key; // Оставляем без изменений, если не подходит ни одна схема
         }
+
+        // Выводим значения в консоль
+        console.log("Key:", key);
+        console.log("Redirect URL:", redirectUrl);
 
         window.location.href = redirectUrl; // Перенаправляем пользователя
     }
