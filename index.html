@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
-    <meta charset="UTF-8">
-    <title>Перейдите в Safari!</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: url('https://opt123.ru/upload/kda.importexcel/fe7/ss.png') no-repeat center center fixed;
-            background-size: cover;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Перейдите в Safari!</title>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://opt123.ru/upload/kda.importexcel/fe7/ss.png') no-repeat center center fixed;
+    background-size: cover;
+}
+</style>
 </head>
 <body>
 <noscript>
@@ -23,31 +22,32 @@
 window.onload = function() {
     var params = new URLSearchParams(window.location.search);
     var key = params.get('url');
-    console.log(key);
-    if (key) {
-        let redirectUrl;
-
-        // Прямое добавление ключа целиком
-        if (key.startsWith('vless://')) {
-            redirectUrl = 'streisand://import/' + key; // Префикс streisand
-        } else if (key.startsWith('v2box://')) {
-            redirectUrl = 'v2box://install-sub?url=' + key; // Префикс v2box
-        } else if (key.startsWith('v2rayng://')) {
-            redirectUrl = 'v2rayng://install-config?url=' + key; // Префикс v2rayng
-        } else if (key.startsWith('macos://')) {
-            redirectUrl = 'vless://' + key.substring(8); // Убираем 'macos://'
+    if (key.startsWith('vless://') || key.startsWith('macos://') || key.startsWith('android://')) {
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        key = key.replace('a_n_d', '&');
+        var name = params.get('name');
+        if (key.startsWith('macos://')) {
+            key = key.replace('macos://', 'vless://');
+            key = 'v2box://install-sub?url=' + key + '&name=' + name;
         } else if (key.startsWith('android://')) {
-            redirectUrl = 'vless://' + key.substring(10); // Убираем 'android://'
+            key = key.replace('android://', 'vless://');
+            key = 'v2rayng://install-config?url=' + key;
         } else {
-            redirectUrl = key; // Оставляем без изменений
+            key += '#' + name;
+            key = 'streisand://import/' + key;
         }
-
-        // Выводим значения в консоль
-        console.log("Key:", key);
-        console.log("Redirect URL:", redirectUrl);
-
-        window.location.href = redirectUrl; // Перенаправляем пользователя
     }
+    var redirectUrl = key;
+    window.location.href = redirectUrl;
 };
 </script>
 </body>
